@@ -32,7 +32,6 @@ interface Props {
   page: Page<any>;
 }
 const { page } = Astro.props;
-console.log(page);
 ---
 
 <Layout title="Gina & Utkarsh">
@@ -44,16 +43,23 @@ console.log(page);
     <div class="flex text-wedding-purple font-plain mb-2">
       {
         page.url.prev ? (
-          <a class="flex-grow text-left hover:underline" href={page.url.prev}>
-            &lsaquo; Previous
-          </a>
+          <div class="flex-grow text-left">
+            <a class="hover:underline" href={page.url.prev}>
+              &lsaquo; Previous
+            </a>
+          </div>
         ) : null
       }
       {
         page.url.next ? (
-          <a class="flex-grow text-right hover:underline" href={page.url.next}>
-            Next &rsaquo;
-          </a>
+          <div class="flex-grow text-right">
+            <a
+              class="flex-grow text-right hover:underline"
+              href={page.url.next}
+            >
+              Next &rsaquo;
+            </a>
+          </div>
         ) : null
       }
     </div>
