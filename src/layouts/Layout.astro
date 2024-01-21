@@ -12,7 +12,7 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Gina & Utkarsh" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta property="og:title" content="Gina & Utkarsh" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://gina-utkarsh.wedding/opg.png" />
@@ -21,35 +21,30 @@ const { title } = Astro.props;
     <meta property="og:image:height" content="400" />
     <title>{title}</title>
   </head>
-  <body>
-    <header class="flex justify-end items-center gap-4 p-4">
+  <body class="bg-wedding-cream font-normal">
+    <!-- <header class="flex justify-end items-center gap-4 p-4">
       <a class="hover:underline" href="/">Home</a>
       <a class="hover:underline" href="/story">Our Story</a>
       <a class="hover:underline" href="/gallery">Gallery</a>
       <a class="hover:underline" href="/schedule">Schedule</a>
       <a class="hover:underline" href="/travel">Travel</a>
-      <a
-        href="/rsvp"
-        class="px-4 py-2 bg-purple-200 rounded-md hover:bg-purple-300 hover:underline"
-        >RSVP</a
-      >
-    </header>
+      <a href="/rsvp" class="hover:underline">RSVP</a>
+    </header> -->
     <slot />
   </body>
 </html>
 <style is:global>
-  :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
-      45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 40%,
-      white 60%
-    );
+  @font-face {
+    font-family: "Allenoire";
+    src: url("fonts/Allenoire.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
   }
-  html {
-    font-family: system-ui, sans-serif;
+
+  @font-face {
+    font-family: "Novecento";
+    src: url("fonts/NovecentoNarrowBook.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
   }
 </style>

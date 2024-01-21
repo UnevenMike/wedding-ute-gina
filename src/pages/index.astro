@@ -1,23 +1,54 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Gina & Utkarsh">
-	<main class="p-4 w-[800px] h-[100vh] mx-auto">
-		<div class="flex justify-center items-center w-full h-full">
-			<h1 class="text-6xl font-bold text-gradient">
-				Gina & Utkarsh
-			</h1>
-		</div>
-	</main>
+  <div class="h-[450px] w-full bg-wedding-purple relative">
+    <div class="h-24"></div>
+
+    <!-- <div class="absolute">
+      <div class="badge text-wedding-cream font-plain">
+        <h2 id="circular">
+          &centerdot; Join us in celebrating &centerdot; the joyous marriage of
+        </h2>
+      </div>
+    </div> -->
+
+    <img
+      src="splash.jpg"
+      class="w-72 rounded-tl-full rounded-tr-full mx-auto"
+    />
+
+    <h1
+      class="absolute bottom-[-12px] left-[calc(50%-9.5rem)] font-fancy text-6xl text-wedding-cream font-bold text-gradient"
+    >
+      gina <br />&nbsp;&nbsp;&ute
+    </h1>
+  </div>
+  <div
+    class="mt-24 font-plain font-bold text-4xl text-center text-wedding-purple"
+  >
+    <p>Save the Dates</p>
+  </div>
+  <div class="w-full mt-2">
+    <div
+      class="mx-auto max-w-[600px] flex font-plain text-wedding-purple items-center font-bold text-xl justify-around"
+    >
+      <div>
+        JABALPUR, INDIA <br />
+        July 12-14 <br />
+        2024
+      </div>
+      <div class="font-fancy text-6xl text-center">&</div>
+      <div class="text-right">
+        Houston, Texas <br />
+        August 31 <br />
+        2024
+      </div>
+    </div>
+  </div>
 </Layout>
 
-<style>
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-</style>
+<script is:inline></script>
+
+<style></style>
