@@ -8,9 +8,45 @@ import landingPageImage from "../images/landing-page.jpg";
 ---
 
 <Layout title="Gina & Utkarsh">
+<<<<<<< HEAD
   <main class="text-wedding-purple mx-auto max-w-[800px] text-center">
     <h1 class="text-6xl mt-24 font-fancy">Gina & Utkarsh</h1>
     <div class="font-plain text-lg flex justify-around mt-2">
+=======
+  <div class="h-[450px] w-full bg-wedding-purple relative">
+    <div class="h-24"></div>
+
+    <div
+      class="absolute left-[calc(50%-11.6rem)] top-[3.3rem] font-plain font-bold text-wedding-cream text-sm w-[175px] h-[150px] overflow-hidden"
+    >
+      <div id="circle-container">
+        <h2 id="cirle-text">
+          ting &bullet; The joyous marriage of &bullet; Join us in celebra
+        </h2>
+      </div>
+    </div>
+
+    <img
+      src="splash.jpg"
+      class="w-72 rounded-tl-full rounded-tr-full mx-auto"
+    />
+
+    <h1
+      class="absolute bottom-[-12px] left-[calc(50%-9.7rem)] font-fancy text-6xl text-wedding-cream font-bold text-gradient"
+    >
+      gina <br />&nbsp;&nbsp;&ute
+    </h1>
+  </div>
+  <div
+    class="mt-24 font-plain font-bold text-4xl text-center text-wedding-purple"
+  >
+    <p>Save the Dates</p>
+  </div>
+  <div class="w-full mt-2">
+    <div
+      class="mx-auto px-4 max-w-[500px] flex font-plain text-wedding-purple items-center font-bold text-lf justify-around"
+    >
+>>>>>>> de4769b6de522fbe536bf54c1dfeea81b27c852a
       <div>
         <div><b>July 12-14, 2024</b> &bullet; Jabalpur,&nbsp;India</div>
         <DaysRemaining date="2024-07-12" />
@@ -30,3 +66,44 @@ import landingPageImage from "../images/landing-page.jpg";
     />
   </main>
 </Layout>
+<<<<<<< HEAD
+=======
+
+<style is:global>
+  #circle-container {
+    width: 200px;
+    transform: translateX(100px);
+  }
+
+  #cirle-text span {
+    height: 75px;
+    position: absolute;
+    width: 8px;
+    left: 0;
+    top: 0;
+    transform-origin: bottom center;
+    transform: rotate(7.2deg);
+    text-align: center;
+  }
+</style>
+
+<script>
+  var lettering = function (node: HTMLElement) {
+    var str = node.textContent ?? "";
+    if (!str) {
+      return;
+    }
+    node.innerHTML = "";
+    var openTag = "<span>";
+    var closeTag = "</span>";
+    var newHTML = openTag;
+    var closeTags = closeTag;
+    for (var i = 0, iCount = str.length; i < iCount; i++) {
+      newHTML += str[i] + openTag;
+      closeTags += closeTag;
+    }
+    node.innerHTML = newHTML + closeTags;
+  };
+  lettering(document.getElementById("cirle-text")!);
+</script>
+>>>>>>> de4769b6de522fbe536bf54c1dfeea81b27c852a
