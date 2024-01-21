@@ -1,0 +1,35 @@
+---
+interface Props {
+  date: string;
+}
+
+const { date } = Astro.props;
+---
+
+<days-remaining data-date={date}>
+  <span></span> Days Remaining
+</days-remaining>
+
+<script>
+  // Define the behaviour for our new type of HTML element.
+  class DaysRemaining extends HTMLElement {
+    constructor() {
+      super();
+      const toDate = this.dataset.date
+        ? new Date(this.dataset.date)
+        : new Date();
+      const today = new Date();
+
+      let secondDiff = toDate.getTime() - today.getTime();
+      let dayDiff = Math.round(secondDiff / (1000 * 3600 * 24));
+      if (dayDiff < 0) {
+        dayDiff = 0;
+      }
+      const numDaysSpan = this.querySelector("span")!;
+      numDaysSpan.textContent = dayDiff.toString();
+    }
+  }
+
+  // Tell the browser to use our AstroHeart class for <astro-heart> elements.
+  customElements.define("days-remaining", DaysRemaining);
+</script>
