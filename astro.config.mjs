@@ -5,6 +5,10 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover'
+  }, 
   output: 'static',
   adapter: vercelStatic(),
   integrations: [tailwind()]

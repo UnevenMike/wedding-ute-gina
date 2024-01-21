@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import Navbar from "../../components/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+
+interface Page<T = any> {
+  data: T[];
+  start: number;
+  end: number;
+  total: number;
+  currentPage: number;
+  size: number;
+  lastPage: number;
+  url: {
+    current: string;
+    prev: string | undefined;
+    next: string | undefined;
+  };
+}
+
+// @ts-ignore
+export async function getStaticPaths({ paginate }) {
+  const galleryImages: any[] = await Astro.glob(
+    "../../images/gallery/*.jpg"
+  ).then((files) => {
+    return files.map((file) => file.default);
+  });
+  return paginate(galleryImages, { pageSize: 6 });
+}
+// All paginated data is passed on the "page" prop
+interface Props {
+  page: Page<any>;
+}
+const { page } = Astro.props;
+console.log(page);
+---
+
+<Layout title="Gina & Utkarsh">
+  <main class="p-4 max-w-[800px] h-[100vh] mx-auto text-center">
+    <div class="w-full flex justify-center mb-10 mt-8">
+      <Navbar location="Gallery" />
+    </div>
+
+    <div class="flex text-wedding-purple font-plain mb-2">
+      {
+        page.url.prev ? (
+          <a class="flex-grow text-left hover:underline" href={page.url.prev}>
+            &lsaquo; Previous
+          </a>
+        ) : null
+      }
+      {
+        page.url.next ? (
+          <a class="flex-grow text-right hover:underline" href={page.url.next}>
+            Next &rsaquo;
+          </a>
+        ) : null
+      }
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {
+        page.data.map((image) => (
+          <article>
+            <Image src={image} class="rounded-lg" alt="" />
+          </article>
+        ))
+      }
+    </div>
+  </main>
+</Layout>
