@@ -3,21 +3,26 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Gina & Utkarsh">
-  <main></main>
   <div class="h-[450px] w-full bg-wedding-purple relative">
     <div class="h-24"></div>
 
-    <!-- <div class="absolute">
-
-    </div> -->
+    <div
+      class="absolute left-[calc(50%-11.75rem)] top-[0.5rem] font-plain font-bold text-wedding-cream text-sm"
+    >
+      <div id="circle-container">
+        <h2 id="cirle-text">
+          celebrating &nbsp;&bullet; The joyous marriage of &bullet; Join us in
+        </h2>
+      </div>
+    </div>
 
     <img
-      src="splash.jpg"
+      src="/src/images/splash.jpg"
       class="w-72 rounded-tl-full rounded-tr-full mx-auto"
     />
 
     <h1
-      class="absolute bottom-[-12px] left-[calc(50%-9.5rem)] font-fancy text-6xl text-wedding-cream font-bold text-gradient"
+      class="absolute bottom-[-12px] left-[calc(50%-9.7rem)] font-fancy text-6xl text-wedding-cream font-bold text-gradient"
     >
       gina <br />&nbsp;&nbsp;&ute
     </h1>
@@ -46,6 +51,42 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </Layout>
 
-<script is:inline></script>
+<style is:global>
+  #circle-container {
+    position: relative;
+    width: 200px;
+    border-radius: 50%;
+    transform: rotate(-50deg);
+  }
 
-<style></style>
+  #cirle-text span {
+    height: 80px;
+    position: absolute;
+    width: 8px;
+    left: 0;
+    top: 0;
+    transform-origin: bottom center;
+    transform: rotate(7deg);
+    text-align: center;
+  }
+</style>
+
+<script>
+  var lettering = function (node: HTMLElement) {
+    var str = node.textContent ?? "";
+    if (!str) {
+      return;
+    }
+    node.innerHTML = "";
+    var openTag = "<span>";
+    var closeTag = "</span>";
+    var newHTML = openTag;
+    var closeTags = closeTag;
+    for (var i = 0, iCount = str.length; i < iCount; i++) {
+      newHTML += str[i] + openTag;
+      closeTags += closeTag;
+    }
+    node.innerHTML = newHTML + closeTags;
+  };
+  lettering(document.getElementById("cirle-text")!);
+</script>
