@@ -7,11 +7,11 @@ import Layout from "../layouts/Layout.astro";
     <div class="h-24"></div>
 
     <div
-      class="absolute left-[calc(50%-11.75rem)] top-[0.5rem] font-plain font-bold text-wedding-cream text-sm"
+      class="absolute left-[calc(50%-11.6rem)] top-[3.3rem] font-plain font-bold text-wedding-cream text-sm w-[175px] h-[150px] overflow-hidden"
     >
       <div id="circle-container">
         <h2 id="cirle-text">
-          celebrating &nbsp;&bullet; The joyous marriage of &bullet; Join us in
+          ting &nbsp;&bullet; The joyous marriage of &bullet; Join us in celebra
         </h2>
       </div>
     </div>
@@ -53,14 +53,12 @@ import Layout from "../layouts/Layout.astro";
 
 <style is:global>
   #circle-container {
-    position: relative;
     width: 200px;
-    border-radius: 50%;
-    transform: rotate(-50deg);
+    transform: translateX(100px);
   }
 
   #cirle-text span {
-    height: 80px;
+    height: 75px;
     position: absolute;
     width: 8px;
     left: 0;
