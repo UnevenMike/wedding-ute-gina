@@ -6,7 +6,7 @@ const links = [
   { name: "Our Story", href: "/story", hidden: true },
   { name: "Schedule", href: "/schedule", hidden: true },
   { name: "Travel", href: "/travel", hidden: true },
-  { name: "RSVP", href: "/rsvp", hidden: true },
+  { name: "RSVP", href: "/rsvp", hidden: false },
 ] as const;
 
 type LinkElements = (typeof links)[number];

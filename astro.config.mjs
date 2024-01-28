@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
-import vercelStatic from '@astrojs/vercel/static';
-
+import vercel from '@astrojs/vercel/serverless';
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
@@ -9,7 +8,9 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'hover'
   }, 
-  output: 'static',
-  adapter: vercelStatic(),
+  output: 'hybrid',
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
   integrations: [tailwind()]
 });
