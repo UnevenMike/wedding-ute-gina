@@ -4,9 +4,26 @@ export const prerender = false;
 import Navbar from "../../components/Navbar.astro";
 import Layout from "../../layouts/Layout.astro";
 
+import { getRSVPs, insertRSVP } from "../../data/db";
+
+
 if (Astro.request.method === "POST") {
   const formData = await Astro.request.formData();
   console.log(formData);
+
+  const result = await insertRSVP({ 
+    firstName: "Gina",
+    lastName: "Luu",
+    email: "test@test.com",
+    address: "10296 Bayou Oaks Dr, Conroe, TX 77385",
+    phoneNumber: "5074614662",
+    attendingIndia: true,
+    numIndiaAttendees: 1,
+    attendingHouston: true,
+    numHoustonAttendees: 0,
+    additionalDietaryInfo: "",
+  })
+
   return Astro.redirect("/rsvp/success");
 }
 ---

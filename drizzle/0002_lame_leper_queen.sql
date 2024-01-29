@@ -1,0 +1,1 @@
+ALTER TABLE "wedding_rsvp" ALTER COLUMN "reservation_id" SET DEFAULT gen_random_uuid();
