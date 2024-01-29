@@ -1,10 +1,10 @@
 ---
 const links = [
   { name: "Home", href: "/", hidden: false },
+  { name: "Schedule", href: "/schedule/india", hidden: false },
   { name: "Gallery", href: "/gallery/1", hidden: false },
   { name: "Save the Dates", href: "/save-the-date", hidden: false },
   { name: "Our Story", href: "/story", hidden: true },
-  { name: "Schedule", href: "/schedule", hidden: true },
   { name: "Travel", href: "/travel", hidden: true },
   { name: "RSVP", href: "/rsvp", hidden: true },
 ] as const;
@@ -19,7 +19,7 @@ interface Props {
 const { location } = Astro.props;
 ---
 
-<div class="flex items-center gap-4 text-wedding-purple font-plain">
+<div class="flex items-center justify-center flex-wrap gap-4 text-wedding-purple font-plain">
   {
     links.filter((link) => (!link.hidden)).map((link) => (
       <a
