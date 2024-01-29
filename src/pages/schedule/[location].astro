@@ -1,0 +1,81 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import { type EventList, IndiaEvents, HoustonEvents } from "./events";
+
+export function getStaticPaths() {
+  return [
+    {params: {location: 'india'}},
+    {params: {location: 'houston'}},
+  ];
+}
+
+const { location } = Astro.params;
+
+let events: EventList[] = []
+if (location == 'india') {
+  events = IndiaEvents;
+} else if (location == 'houston') {
+  events = HoustonEvents;
+}
+---
+
+<Layout title="Gina & Utkarsh">
+  <main class="text-wedding-purple mx-auto max-w-[1000px] text-center">
+    <main class="p-4 max-w-[800px] h-[100vh] mx-auto text-center">
+      <div class="w-full flex justify-center mb-10 mt-8">
+        <Navbar location="Schedule" />
+      </div>
+    <h1 class="text-6xl mt-10 font-fancy">Schedule</h1>
+
+    <div class="mt-6 text-right md:pr-8 md:mb-[-2rem] flex gap-2 justify-center md:justify-end z-10">
+      { location == 'india'
+        ? (
+          <a href="/schedule/india">
+            <div class="p-2 rounded bg-wedding-purple text-wedding-cream">India</div>
+          </a>
+          <a  href="/schedule/houston">
+            <div class="p-2 rounded border border-wedding-purple">Houston</div>  
+          </a>
+        ): (
+          <a  href="/schedule/india">
+            <div class="p-2 rounded border border-wedding-purple">India</div>  
+          </a>
+          <a href="/schedule/houston">
+            <div class="p-2 rounded bg-wedding-purple text-wedding-cream">Houston</div>
+          </a>
+        )
+      }
+    </div>  
+
+    <div class="container mx-auto p-4 md:p-8 text-left">
+      <div class="grid gap-6">
+        {
+          events.map((date) => (
+            <div>
+              <h2 class="text-2xl font-semibold mb-2">{date.date}</h2>
+              <div class="grid gap-4">
+                {date.events.map((event) => (
+                  <div
+                    class="bg-card text-card-foreground shadow-sm border border-neutral-400 rounded-lg"
+                    data-v0-t="card"
+                  >
+                    <div class="flex flex-col space-y-1.5 p-6 font-plain">
+                      <h3 class="text-2xl font-semibold tracking-tight">
+                        {event.event}
+                      </h3>
+                      <p class="text-sm text-muted-foreground">
+                        {event.time}  &nbsp;&bullet;&nbsp; {event.location}
+                      </p>
+                    </div>
+                    <div class="p-6">{event.description}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>
