@@ -29,6 +29,13 @@
       "when": 1706479195442,
       "tag": "0003_wild_excalibur",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1708916805547,
+      "tag": "0004_nervous_shaman",
+      "breakpoints": true
     }
   ]
 }

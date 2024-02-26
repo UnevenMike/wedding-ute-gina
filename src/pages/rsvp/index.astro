@@ -6,23 +6,33 @@ import Layout from "../../layouts/Layout.astro";
 
 import { getRSVPs, insertRSVP } from "../../data/db";
 
-
 if (Astro.request.method === "POST") {
   const formData = await Astro.request.formData();
   console.log(formData);
 
-  const result = await insertRSVP({ 
-    firstName: "Gina",
-    lastName: "Luu",
-    email: "test@test.com",
-    address: "10296 Bayou Oaks Dr, Conroe, TX 77385",
-    phoneNumber: "5074614662",
-    attendingIndia: true,
-    numIndiaAttendees: 1,
-    attendingHouston: true,
-    numHoustonAttendees: 0,
-    additionalDietaryInfo: "",
-  })
+  let formIndiaNum = parseInt(
+    formData.get("numIndiaAttendees")?.toString() ?? ""
+  );
+  if (isNaN(formIndiaNum)) formIndiaNum = -1;
+
+  let formHoustonNum = parseInt(
+    formData.get("numHoustonAttendees")?.toString() ?? ""
+  );
+  if (isNaN(formHoustonNum)) formHoustonNum = -1;
+
+  const result = await insertRSVP({
+    firstName: formData.get("firstName")?.toString() ?? "",
+    lastName: formData.get("lastName")?.toString() ?? "",
+    email: formData.get("email")?.toString() ?? "",
+    address: formData.get("phoneNumber")?.toString() ?? "",
+    phoneNumber: formData.get("address")?.toString() ?? "",
+    attendingIndia: formIndiaNum > 0 ? true : false,
+    numIndiaAttendees: formIndiaNum,
+    attendingHouston: formHoustonNum > 0 ? true : false,
+    numHoustonAttendees: formHoustonNum,
+    additionalDietaryInfo:
+      formData.get("additionalDietaryInfo")?.toString() ?? "",
+  });
 
   return Astro.redirect("/rsvp/success");
 }
@@ -41,79 +51,98 @@ if (Astro.request.method === "POST") {
       class="text-left grid grid-cols-1 gap-2 text-wedding-purple max-w-[600px] mx-auto p-2 font-plain [&>label>input]:font-normal [&>label>input]:text-black"
     >
       <label class="block">
-        <span>First name</span>
+        <span>First name *</span>
         <input
           type="text"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
           name="firstName"
+          required
         />
       </label>
       <label class="block">
-        <span>Last name</span>
+        <span>Last name *</span>
         <input
           type="text"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
           name="lastName"
+          required
         />
       </label>
 
       <label class="block">
-        <span>Email</span>
+        <span>Email *</span>
         <input
-          type="text"
+          type="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
           name="email"
+          required
         />
       </label>
 
       <label class="block">
-        <span>Phone Number</span>
+        <span>Phone Number *</span>
         <input
           type="text"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
           name="phoneNumber"
+          required
         />
       </label>
 
       <label class="block">
-        <span>Address</span>
+        <span>Address *</span>
         <input
           type="text"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
           name="address"
+          required
         />
       </label>
 
       <label class="block">
-        <span>Number of Attendees</span>
+        <span>Number Attending India *</span>
         <input
           type="text"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
-          name="numberOfAttendees"
+          name="numIndiaAttendees"
+          required
         />
       </label>
 
       <label class="block">
-        <span>Meal Options</span>
+        <span>Number Attending Houston *</span>
         <input
           type="text"
+          oninput="this.value=this.value.replace(/[^0-9]/g,'');"
           class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
           placeholder=""
-          name="mealOptions"
+          name="numHoustonAttendees"
+          required
         />
+      </label>
+
+      <label class="block">
+        <span>Dietary Notes</span>
+        <textarea
+          class="mt-1 block w-full rounded-md bg-gray-50 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 font-normal text-black"
+          placeholder=""
+          name="additionalDietaryInfo"></textarea>
       </label>
 
       <button
         type="submit"
         class="bg-wedding-purple text-wedding-cream mt-2 p-2 rounded-md"
-        >Submit</button
       >
+        Send RSVP
+      </button>
     </form>
   </main>
 </Layout>

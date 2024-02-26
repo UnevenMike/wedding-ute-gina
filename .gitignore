@@ -1,3 +1,5 @@
+wedding_rsvp_*.csv
+
 # build output
 dist/
 
@@ -23,3 +25,4 @@ pnpm-debug.log*
 
 # Vercel Project Info
 .vercel/*
+
