@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import { Image } from "astro:assets";
+
+import VenmoQr from "../images/venmo-qr-code.jpg";
+---
+
+<Layout title="Gina & Utkarsh | Registry">
+  <main class="text-wedding-purple mx-auto max-w-[1000px] text-center mb-8">
+    <div class="w-full flex justify-center mb-10 mt-8">
+      <Navbar location="Registry" />
+    </div>
+    <h1 class="text-6xl mt-10 font-fancy">Registry</h1>
+
+    <div
+      class="px-6 pt-10 text-left text-lg md:text-xl font-normal flex flex-col gap-6"
+    >
+      <p>
+        We are beyond grateful to have you join us on our special day to
+        celebrate our love and commitment. Your presence means the world to us
+        and is truly the greatest gift.
+      </p>
+      <p>
+        At this stage of our lives, we are fortunate to have all that we need.
+        However, if you feel inclined to give us a gift, your contribution
+        towards our future together would be deeply appreciated. Whether it's a
+        cash gift or through Venmo at Gina-L uu-2, your generosity will help us
+        embark on the next chapter of our journey together.
+      </p>
+
+      <p>Thank you for your love and support.</p>
+
+      <p>
+        With Love,<br />
+        Gina Luu and Utkarsh Koshti
+      </p>
+    </div>
+
+    <div class="mt-24 font-plain">
+      <div class="p-6">
+        <a
+          class="underline text-[#38bdf8] hover:text-[#0284c7]"
+          href="https://venmo.com/code?user_id=2309691392655360005&created=1709405005.849431&printed=1"
+          target="_blank">Venmo Link</a
+        >
+      </div>
+      <Image
+        src={VenmoQr}
+        alt="Gina and Utkarsh"
+        height={200}
+        class="mx-auto"
+      />
+      Venmo QR Code
+    </div>
+  </main>
+</Layout>
