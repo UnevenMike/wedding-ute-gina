@@ -27,7 +27,7 @@ export const IndiaEvents: EventList[] = [
                 time: "2:00 PM",
                 location: "Shawn Elize, Jabalpur",
                 description: "Mehendi, the hindi term for 'henna', is a ceremony wishing the bride good health and prosperity throughout her marriage.",
-                clothing: "Greens or Browns, Semi-Formal."
+                clothing: "Semi-Formal, Greens or Browns"
             },
             {
                 event: "Sangeet",
@@ -46,7 +46,7 @@ export const IndiaEvents: EventList[] = [
                 time: "11:00 AM",
                 location: "Shawn Elize, Jabalpur",
                 description: "Family, relatives and friends come together to apply turmeric paste (haldi) on the bride and groom's face and body.",
-                clothing: "White, clothes will get dirty."
+                clothing: "White, clothes will get dirty"
             },
             {
                 event: "Baraat",
