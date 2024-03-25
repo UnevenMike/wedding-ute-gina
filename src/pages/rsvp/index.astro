@@ -1,0 +1,315 @@
+---
+export const prerender = false;
+
+import Navbar from "../../components/Navbar.astro";
+import Layout from "../../layouts/Layout.astro";
+
+import { getRSVPs, insertRSVP } from "../../data/db";
+
+if (Astro.request.method === "POST") {
+  const formData = await Astro.request.formData();
+  console.log(formData);
+
+  let attendingIndia = formData.get("attendingIndia")?.toString() === "true";
+  let formIndiaNum = parseInt(
+    formData.get("numIndiaAttendees")?.toString() ?? ""
+  );
+  if (isNaN(formIndiaNum)) formIndiaNum = -1;
+
+  let attendingHouston =
+    formData.get("attendingHouston")?.toString() === "true";
+  let formHoustonNum = parseInt(
+    formData.get("numHoustonAttendees")?.toString() ?? ""
+  );
+  if (isNaN(formHoustonNum)) formHoustonNum = -1;
+
+  const result = await insertRSVP({
+    firstName: formData.get("firstName")?.toString() ?? "",
+    lastName: formData.get("lastName")?.toString() ?? "",
+    email: formData.get("email")?.toString() ?? "",
+    address: formData.get("phoneNumber")?.toString() ?? "",
+    phoneNumber: formData.get("address")?.toString() ?? "",
+    attendingIndia: attendingIndia,
+    numIndiaAttendees: formIndiaNum,
+    attendingHouston: attendingHouston,
+    numHoustonAttendees: formHoustonNum,
+    additionalDietaryInfo:
+      formData.get("additionalDietaryInfo")?.toString() ?? "",
+  });
+
+  return Astro.redirect("/rsvp/success");
+}
+---
+
+<Layout title="Gina & Utkarsh">
+  <main class="p-4 max-w-[800px] h-[100vh] mx-auto text-center">
+    <div class="w-full flex justify-center mb-10 mt-8">
+      <Navbar location="RSVP" />
+    </div>
+
+    <h1 class="text-4xl font-fancy text-wedding-purple mb-8">RSVP</h1>
+
+    <form
+      method="post"
+      class="text-left grid grid-cols-1 gap-6 text-wedding-purple max-w-[600px] mx-auto p-2 font-plain [&>label>input]:font-normal [&>label>input]:text-black"
+    >
+      <h2 class="text-xl font-plain font-bold text-wedding-purple mb-[-1rem]">
+        India Attendance (July 12-14, 2024)
+      </h2>
+      <div id="india-attendance-container" class="flex flex-col gap-6 border-2 border-wedding-purple p-4">
+        <div>
+          <span>Will you be attending the India Ceremonies?</span>
+          <div class="pl-4">
+            <input
+              type="checkbox"
+              id="india_yes"
+              value="true"
+              name="attendingIndia"
+            />
+            <label for="india_yes" class="pl-2">Yes</label><br />
+            <input
+              type="checkbox"
+              id="india_no"
+              value="false"
+              name="attendingIndia"
+            />
+            <label for="india_no" class="pl-2">No</label><br />
+          </div>
+        </div>
+
+        <div id="india-number-container" hidden>
+          <span>How many people will you be attending with you?</span>
+          <input
+            id=""
+            type="text"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="numIndiaAttendees"
+            required
+          />
+
+          <div class="pt-4 font-normal">
+            <span class="font-bold">Note:</span>&nbsp;Hotel accomidations will
+            be covered for the duration of the event.
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-xl font-plain font-bold text-wedding-purple mb-[-1rem]">
+        Houston Attendance (Sept. 1st, 2024)
+      </h2>
+      <div id="houston-attendance-container" class="flex flex-col gap-6 border-2 border-wedding-purple p-4">
+        <div>
+          <span>Will you be attending the Houston Ceremony?</span>
+          <div class="pl-4">
+            <input
+              type="checkbox"
+              id="houston_yes"
+              value="true"
+              name="attendingHouston"
+            />
+            <label for="houston_yes" class="pl-2">Yes</label><br />
+            <input
+              type="checkbox"
+              id="houston_no"
+              value="false"
+              name="attendingHouston"
+            />
+            <label for="houston_no" class="pl-2">No</label><br />
+          </div>
+        </div>
+
+        <div id="houston-number-container" hidden>
+          <span>How many people will you be attending with you?</span>
+          <input
+            type="text"
+            oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="numHoustonAttendees"
+            required
+          />
+
+          <div class="pt-4 font-normal">
+            <span class="font-bold">Note:</span>&nbsp;The Houston ceremony is intended for guests ages 5 and above only.
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-xl font-plain font-bold text-wedding-purple mb-[-1rem]">
+        Personal Info
+      </h2>
+      <div class="flex flex-col gap-6 border-2 border-wedding-purple p-4">
+        <label>
+          <span>First name *</span>
+          <input
+            type="text"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="firstName"
+            required
+          />
+        </label>
+        <label>
+          <span>Last name *</span>
+          <input
+            type="text"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="lastName"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Email *</span>
+          <input
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="email"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Phone Number *</span>
+          <input
+            type="text"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="phoneNumber"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Address *</span>
+          <input
+            type="text"
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="address"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Do you have any dietary restrictions we should know about?</span
+          >
+          <textarea
+            class="mt-1 block w-full font-normal text-black bg-wedding-cream border-wedding-purple border-2 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder=""
+            name="additionalDietaryInfo"></textarea>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="bg-wedding-purple text-wedding-cream mt-2 p-4"
+      >
+        Send RSVP
+      </button>
+    </form>
+  </main>
+</Layout>
+
+<script>
+  const indidAttendanceContainer = document.getElementById(
+    "india-attendance-container"
+  ) as HTMLDivElement;
+
+  const houstonAttendanceContainer = document.getElementById(
+    "houston-attendance-container"
+  ) as HTMLDivElement;
+
+
+  const indiaCheckboxYes = document.getElementById("india_yes")! as any;
+  const indiaCheckboxNo = document.getElementById("india_no")! as any;
+  const indiaNumberContainer = document.getElementById(
+    "india-number-container"
+  ) as HTMLDivElement;
+  const numAttendingIndia = document.querySelector(
+    'input[name="numIndiaAttendees"]'
+  ) as HTMLInputElement;
+
+  indiaCheckboxYes.addEventListener("change", (event: any) => {
+    indidAttendanceContainer.classList.remove("border-red-500");
+
+    if (event!.target!.checked) {
+      indiaNumberContainer.hidden = false;
+      numAttendingIndia.required = true;
+      numAttendingIndia.value = "";
+      indiaCheckboxNo.checked = false;
+    } else {
+      indiaNumberContainer.hidden = true;
+      numAttendingIndia.required = false;
+      numAttendingIndia.value = "";
+    }
+  });
+
+  indiaCheckboxNo.addEventListener("change", (event: any) => {
+    indidAttendanceContainer.classList.remove("border-red-500");
+
+    if (event!.target!.checked) {
+      indiaNumberContainer.hidden = true;
+      numAttendingIndia.required = false;
+      numAttendingIndia.value = "0";
+      indiaCheckboxYes.checked = false;
+    }
+  });
+
+  const houstonCheckboxYes = document.getElementById("houston_yes")! as any;
+  const houstonCheckboxNo = document.getElementById("houston_no")! as any;
+  const houstonNumberContainer = document.getElementById(
+    "houston-number-container"
+  ) as HTMLDivElement;
+  const numAttendingHouston = document.querySelector(
+    'input[name="numHoustonAttendees"]'
+  ) as HTMLInputElement;
+
+  houstonCheckboxYes.addEventListener("change", (event: any) => {
+    houstonAttendanceContainer.classList.remove("border-red-500");
+    
+    if (event!.target!.checked) {
+      houstonNumberContainer.hidden = false;
+      numAttendingHouston.required = true;
+      numAttendingHouston.value = "";
+      houstonCheckboxNo.checked = false;
+    } else {
+      houstonNumberContainer.hidden = true;
+      numAttendingHouston.required = false;
+      numAttendingHouston.value = "";
+    }
+  });
+
+  houstonCheckboxNo.addEventListener("change", (event: any) => {
+    houstonAttendanceContainer.classList.remove("border-red-500");
+
+    if (event!.target!.checked) {
+      houstonNumberContainer.hidden = true;
+      numAttendingHouston.required = false;
+      numAttendingHouston.value = "0";
+      houstonCheckboxYes.checked = false;
+    }
+  });
+
+  const submitButton = document.querySelector("button")! as HTMLButtonElement;
+  submitButton.addEventListener("click", (event) => {
+
+    indidAttendanceContainer.classList.remove("border-red-500");
+    houstonAttendanceContainer.classList.remove("border-red-500");
+
+    if (!indiaCheckboxYes.checked && !indiaCheckboxNo.checked) {
+      event.preventDefault();
+      indidAttendanceContainer.classList.add("border-red-500");
+    }
+
+    if (!houstonCheckboxYes.checked && !houstonCheckboxNo.checked) {
+      event.preventDefault();
+      houstonAttendanceContainer.classList.add("border-red-500");
+    }
+  });
+</script>

@@ -1,0 +1,1 @@
+ALTER TABLE "wedding_rsvp" ADD COLUMN "attending_houston" boolean NOT NULL;

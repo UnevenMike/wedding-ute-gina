@@ -7,11 +7,14 @@ export default {
 			'plain': ['Novecento'],
 			'normal': ['system-ui', 'sans-serif']
 		},
-		colors: {
-			'wedding-cream': '#f9f5ec',
-			'wedding-purple': '#94838b'
+		extend: {
+			colors: {
+				'wedding-cream': '#f9f5ec',
+				'wedding-purple': '#94838b'
+			},
 		},
-		extend: {},
 	},
-	plugins: [],
+	plugins: [
+		require('@tailwindcss/forms')
+	],
 }

@@ -1,0 +1,41 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1706475095290,
+      "tag": "0000_magenta_norrin_radd",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1706477744132,
+      "tag": "0001_supreme_junta",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1706479145901,
+      "tag": "0002_lame_leper_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1706479195442,
+      "tag": "0003_wild_excalibur",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1708916805547,
+      "tag": "0004_nervous_shaman",
+      "breakpoints": true
+    }
+  ]
+}
