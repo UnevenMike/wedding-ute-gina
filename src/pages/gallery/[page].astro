@@ -18,12 +18,30 @@ interface Page<T = any> {
   };
 }
 
+export function shuffle(arr: any[]) {
+  let currentIndex = arr.length,  randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [arr[currentIndex], arr[randomIndex]] = [
+      arr[randomIndex], arr[currentIndex]];
+  }
+
+  return arr;
+}
+
 // @ts-ignore
 export async function getStaticPaths({ paginate }) {
   const galleryImages: any[] = await Astro.glob(
     "../../images/gallery/*.jpg"
   ).then((files) => {
-    return files.map((file) => file.default);
+    return shuffle(files.map((file) => file.default));
   });
   return paginate(galleryImages, { pageSize: 6 });
 }
