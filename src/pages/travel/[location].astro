@@ -1,0 +1,206 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import VenueImg from "../../images/venue.jpg";
+import { Image } from "astro:assets";
+
+export function getStaticPaths() {
+  return [
+    { params: { location: "india" } },
+    { params: { location: "houston" } },
+  ];
+}
+
+const { location } = Astro.params;
+
+
+---
+
+<Layout title="Gina & Utkarsh | Travel">
+  <main class="text-wedding-purple mx-auto max-w-[1000px] text-center mb-8">
+    <div class="w-full flex justify-center mb-10 mt-8">
+      <Navbar location="Travel" />
+    </div>
+    <h1 class="text-6xl mt-10 font-fancy">Travel</h1>
+
+    <div
+      class="mt-6 text-right md:pr-8 md:mb-[-2rem] flex gap-2 justify-center md:justify-end z-10 font-plain"
+    >
+      {
+        location == "india" ? (
+          <>
+            <a href="/travel/india">
+              <div class="p-2 rounded bg-wedding-purple text-wedding-cream">
+                India
+              </div>
+            </a>
+            <a href="/travel/houston">
+              <div class="p-2 rounded border border-wedding-purple">
+                Houston
+              </div>
+            </a>
+          </>
+        ) : (
+          <>
+            <a href="/travel/india">
+              <div class="p-2 rounded border border-wedding-purple">India</div>
+            </a>
+            <a href="/travel/houston">
+              <div class="p-2 rounded bg-wedding-purple text-wedding-cream">
+                Houston
+              </div>
+            </a>
+          </>
+        )
+      }
+    </div>
+
+    { 
+      location == 'india' ?
+      <div>
+        <div class="px-6">
+          <h2 class="text-3xl font-plain p-6">India Travel Tips</h2>
+
+          <div
+            class="text-lg md:text-xl flex flex-col gap-4 mb-8 border-2 border-wedding-purple p-4 font-normal"
+          >
+            <p>
+              Remember to stay flexible and open-minded, as traveling in India can
+              sometimes be unpredictable.
+            </p>
+            <p>
+              Embrace the adventure, and you're sure to create memories that will
+              last a lifetime!
+            </p>
+          </div>
+
+          <ol
+            class="text-left list-decimal gap-8 flex flex-col text-lg md:text-xl font-normal"
+          >
+            <li>
+              <b>Research and Plan Ahead:</b> India is a vast and diverse country with
+              a rich cultural heritage. Research the places you want to visit, the best
+              time to travel, and any specific cultural customs or etiquette you should
+              be aware of. We suggest flying into Delhi and exploring Delhi, Agra and
+              Jaipur.
+            </li>
+            <li>
+              <b>Visa and Documentation:</b> Ensure you have a valid passport (valid
+              for 6 months after the travel date) and obtain the necessary visa 2 weeks
+              before traveling to India. Check the visa requirements well in advance
+              and make copies of important documents like your passport, visa, and travel
+              insurance. To submit your visa, go here:
+              <br />
+              <ol class="list-disc pl-12">
+                <li>
+                  <a
+                    href="https://indianvisaonline.gov.in"
+                    target="_blank"
+                    class="underline text-[#38bdf8] hover:text-[#0284c7]"
+                    >e-Visa (indianvisaonline.gov.in)</a
+                  >
+                </li>
+                <li>
+                  The Visa application will require an address. Please use the
+                  address and phone number of Utkarsh's uncle Chandra Pareta.
+                  <br />
+                  <div class="p-4">
+                    305 Laxmi Colony <br />
+                    Kakraiya Talaiya, Gorakhpur <br />
+                    Jabalpur MP 482001 <br />
+                    India
+                    <br />
+                    +91 761-2429050
+                  </div>
+                </li>
+              </ol>
+            </li>
+            <li>
+              <b>Health Precautions:</b> Consult with your doctor or a travel health
+              clinic at least a few weeks before your trip to get advice on vaccinations
+              and medications recommended for traveling to India. It's also essential
+              to drink only bottled or purified water and be cautious about street food
+              to avoid foodborne illnesses.
+            </li>
+            <li>
+              <b>Pack Wisely:</b> Pack lightweight and breathable clothing. Don't forget
+              essentials like sunscreen, insect repellent, comfortable walking shoes,
+              and any necessary medications. If you'd like to purchase India clothing
+              we recommend:
+              <ol class="list-disc pl-12">
+                <li>Delhi: Chandni Chowk outdoor market or Ambience Mall</li>
+                <li>Jabalpur: Men - Mangaldeep and Women - Westside</li>
+              </ol>
+            </li>
+            <li>
+              <b>Respect Local Customs:</b> India is known for its diverse cultural practices
+              and traditions. Respect local customs, dress modestly, and be mindful of
+              religious sensitivities, especially when visiting temples, mosques, or
+              other sacred sites.
+            </li>
+            <li>
+              <b>Stay Connected:</b> Purchase a local SIM card or activate an international
+              roaming plan for your phone to stay connected during your trip. Having
+              access to maps, translation apps, and communication tools can be incredibly
+              helpful, especially if you're traveling independently. Note: T-Mobile does
+              not have service in India
+            </li>
+            <li>
+              <b>Money Matters:</b> Carry a mix of cash ($100 should be plenty) and cards,
+              and inform your bank of your travel plans to avoid any issues with using
+              your cards abroad. ATMs are widely available in cities and major tourist
+              areas, but it's a good idea to have some cash on hand, especially in rural
+              areas.
+            </li>
+            <li>
+              <b>Safety and Security:</b> While India is generally a safe destination
+              for travelers, it's essential to remain vigilant, especially in crowded
+              areas and tourist spots where petty theft can occur. Keep your belongings
+              secure, avoid walking alone at night, and trust your instincts.
+            </li>
+            <li>
+              <b>Enjoy the Experience:</b> Embrace the vibrant culture, delicious cuisine,
+              and warm hospitality that India has to offer. Be open to new experiences,
+              interact with locals, and savor every moment of your journey through this
+              incredible country.
+            </li>
+          </ol>
+        </div>
+      </div>
+    : <></>
+    }
+
+    { 
+      location == 'houston'
+    ? <div>
+        <div class="px-6">
+          <h2 class="text-3xl font-plain p-6">Houston Travel Tips</h2>
+
+          <div
+            class="text-lg md:text-xl flex flex-col gap-4 mb-8 border-2 border-wedding-purple p-4 font-normal"
+          >
+            <p>
+              A hotel reservation code will be coming soon.
+              <br/>
+              Check back in a few weeks for more details.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col">
+          <p class="text-3xl font-plain">
+            Majestic Oaks
+          </p>
+          <p class="text-lg mb-2">
+            20125 Cedar Ln <br/>Tomball, TX 77377
+          </p>
+          <div class="mx-auto px-2">
+            <Image src={VenueImg} class="rounded-lg" alt="" />
+          </div>
+        </div>
+      </div>
+    : <></>
+    }
+    
+  </main>
+</Layout>
