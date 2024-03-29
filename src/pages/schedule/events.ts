@@ -83,7 +83,7 @@ export const IndiaEvents: EventList[] = [
                 clothing: ""
             },
             {
-                event: "Farewell for US attendents",
+                event: "Farewell for US attendants",
                 time: "7:00 PM",
                 location: "Shawn Elize, Jabalpur",
                 description: "",
