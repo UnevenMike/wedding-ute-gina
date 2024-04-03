@@ -47,7 +47,11 @@ if (Astro.request.method === "POST") {
       <Navbar location="RSVP" />
     </div>
 
-    <h1 class="text-4xl font-fancy text-wedding-purple mb-8">RSVP</h1>
+    <h1 class="text-4xl font-fancy text-wedding-purple mb-2">RSVP</h1>
+
+    <p class="font-light pb-2 text-wedding-purple">
+      Plus ones and family are welcome
+    </p>
 
     <form
       method="post"
@@ -78,7 +82,7 @@ if (Astro.request.method === "POST") {
         </div>
 
         <div id="india-number-container" hidden>
-          <span>How many people will you be attending with you?</span>
+          <span>How many people will you be attending with you? (Including yourself)</span>
           <input
             id=""
             type="text"
@@ -121,7 +125,7 @@ if (Astro.request.method === "POST") {
         </div>
 
         <div id="houston-number-container" hidden>
-          <span>How many people will you be attending with you?</span>
+          <span>How many people will you be attending with you? (Including yourself)</span>
           <input
             type="text"
             oninput="this.value=this.value.replace(/[^0-9]/g,'');"
@@ -208,7 +212,7 @@ if (Astro.request.method === "POST") {
 
       <button
         type="submit"
-        class="bg-wedding-purple text-wedding-cream mt-2 p-4"
+        class="bg-wedding-purple text-wedding-cream my-2 p-4"
       >
         Send RSVP
       </button>
