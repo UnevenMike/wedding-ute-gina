@@ -173,24 +173,48 @@ const { location } = Astro.params;
     { 
       location == 'houston'
     ? <div>
-        <div class="px-6">
-          <h2 class="text-3xl font-plain p-6">Houston Travel Tips</h2>
+        <div class="flex flex-col mt-6">
+          <h2 class="text-3xl font-plain mb-4">
+            La Quinta Inn & Suites Tomball 
+          </h2>
+
+          <p class="text-lg mb-2">
+            14000 Medical Complex Drive <br/>Tomball, TX 77375
+          </p>
 
           <div
-            class="text-lg md:text-xl flex flex-col gap-4 mb-8 border-2 border-wedding-purple p-4 font-normal"
+            class="text-lg flex flex-col gap-4 mb-8 border-2 border-wedding-purple p-4 font-normal"
           >
             <p>
-              A hotel reservation code will be coming soon.
-              <br/>
-              Check back in a few weeks for more details.
+              Reservations need to be made by June 1<sup>st</sup> to receive the discounted rate.
             </p>
           </div>
+
+          <p class="text-plain text-xl mb-4 w-4/5 mx-auto text-balance">
+            The La Quinta is offering a special rate for our guests.
+            They will also be providing a shuttle service to and from the venue.
+            Use 
+            <a class="underline text-[#38bdf8] hover:text-[#0284c7]"
+              href="https://www.wyndhamhotels.com/laquinta/tomball-texas/la-quinta-tomball/overview?checkInDate=08/31/2024&checkOutDate=09/02/2024&groupCode=GINA">
+              this link
+            </a>
+            to book your room.
+          </p>
+
+          <p class="text-plain text-xl md:w-4/5 mx-auto text-balance">
+            The booking link creates a reservation for August 31<sup>st</sup> to September 2<sup>nd</sup>. If you would like a shorter stay, please create the booking and call the hotel to make alterations.
+          </p>
+
+        </div>
+
+        <div class="my-12 border-b-2 border-wedding-purple">
+          
         </div>
 
         <div class="flex flex-col">
-          <p class="text-3xl font-plain">
+          <h2 class="text-3xl font-plain">
             Majestic Oaks
-          </p>
+          </h2>
           <p class="text-lg mb-2">
             20125 Cedar Ln <br/>Tomball, TX 77377
           </p>
