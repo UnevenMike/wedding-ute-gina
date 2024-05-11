@@ -91,5 +91,29 @@ const { page } = Astro.props;
         ))
       }
     </div>
+
+    <div class="flex text-wedding-purple font-plain mt-2 mb-2">
+      {
+        page.url.prev ? (
+          <div class="flex-grow text-left">
+            <a class="hover:underline" href={page.url.prev}>
+              &lsaquo; Previous
+            </a>
+          </div>
+        ) : null
+      }
+      {
+        page.url.next ? (
+          <div class="flex-grow text-right">
+            <a
+              class="flex-grow text-right hover:underline"
+              href={page.url.next}
+            >
+              Next &rsaquo;
+            </a>
+          </div>
+        ) : null
+      }
+    </div>
   </main>
 </Layout>
