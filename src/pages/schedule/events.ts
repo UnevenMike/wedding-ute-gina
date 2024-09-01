@@ -98,13 +98,6 @@ export const HoustonEvents: EventList[] = [
         date: "September 1, 2024",
         events: [
             {
-                event: "Photos/Meet and Greet",
-                time: "5:00 PM",
-                location: "Majestic Oaks, Tomball TX",
-                description: "",
-                clothing: ""
-            },
-            {
                 event: "Cocktail Hour",
                 time: "6:00 PM",
                 location: "Majestic Oaks, Tomball TX",
